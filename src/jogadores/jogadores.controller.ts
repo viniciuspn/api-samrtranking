@@ -1,5 +1,6 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CriarJogadorDto } from './dtos/criar-Jogador.dto';
+import { Jogador } from './interfaces/jogador.interface';
 import { JogadoresService } from './jogadores.service';
 
 @Controller('api/v1/jogadores')
@@ -11,5 +12,10 @@ export class JogadoresController {
     return JSON.stringify({
       mensagem: 'Jogador Criado com sucesso',
     });
+  }
+
+  @Get()
+  async consultarJogadores(): Promise<Jogador[]> {
+    return this.jogadoresService.consultarTodosJogadores();
   }
 }
