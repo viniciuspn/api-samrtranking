@@ -5,7 +5,7 @@ import { JogadoresModule } from './jogadores/jogadores.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://admin:GoaTpTioz60TFRUl@cluster0.tprzocn.mongodb.net/samrtranking?retryWrites=true&w=majority',
+      `mongodb+srv://${process.env['DB_USER']}:${process.env['DB_PASS']}@cluster0.tprzocn.mongodb.net/${process.env['DB_NAME']}?retryWrites=true&w=majority`,
       {
         useNewUrlParse: true,
         useCreateIndex: true,
