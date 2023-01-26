@@ -1,20 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { JogadoresModule } from './jogadores/jogadores.module';
-
+import 'dotenv/config';
+const URI = process.env.MONGODB_URL;
 @Module({
-  imports: [
-    MongooseModule.forRoot(
-      `mongodb+srv://${process.env['DB_USER']}:${process.env['DB_PASS']}@cluster0.tprzocn.mongodb.net/${process.env['DB_NAME']}?retryWrites=true&w=majority`,
-      {
-        useNewUrlParse: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-      },
-    ),
-    JogadoresModule,
-  ],
+  imports: [MongooseModule.forRoot(URI), JogadoresModule],
   controllers: [],
   providers: [],
 })
