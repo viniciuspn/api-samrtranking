@@ -7,7 +7,7 @@ import {
 import { CriarJogadorDto } from './dtos/criar-Jogador.dto';
 import { Jogador } from './interfaces/jogador.interface';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { AtualizaJogadorDto } from './dtos/atualiza-Jogador.dto';
 
 @Injectable()
@@ -79,6 +79,10 @@ export class JogadoresService {
   }
 
   private async obterJogadorPorId(_id: string): Promise<Jogador> {
+    const valid = mongoose.Types.ObjectId.isValid(_id);
+    if (!valid) {
+      throw new NotFoundException(`Jogador com o id  ${_id} invalido!`);
+    }
     return await this.jogadorModel.findOne({ _id }).exec();
   }
 }

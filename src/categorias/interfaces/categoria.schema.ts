@@ -4,7 +4,7 @@ export const CategoriaSchema = new mongoose.Schema(
   {
     categoria: { type: String, unique: true },
     descrocap: { type: String },
-    evendos: [
+    eventos: [
       {
         nome: { type: String },
         operacao: { type: String },
