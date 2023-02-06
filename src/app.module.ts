@@ -6,7 +6,12 @@ import { DesafiosModule } from './desafios/desafios.module';
 import 'dotenv/config';
 const URI = process.env.MONGODB_URL;
 @Module({
-  imports: [MongooseModule.forRoot(URI), JogadoresModule, CategoriasModule, DesafiosModule],
+  imports: [
+    MongooseModule.forRoot(URI),
+    JogadoresModule,
+    CategoriasModule,
+    DesafiosModule,
+  ],
   controllers: [],
   providers: [],
 })
